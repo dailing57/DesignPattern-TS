@@ -9,10 +9,13 @@
 - 在许多设计工作的初期都会使用[工厂方法模式](https://refactoringguru.cn/design-patterns/factory-method) （较为简单， 而且可以更方便地通过子类进行定制）， 随后演化为使用[抽象工厂模式](https://refactoringguru.cn/design-patterns/abstract-factory)、 [原型模式](https://refactoringguru.cn/design-patterns/prototype)或[生成器模式](https://refactoringguru.cn/design-patterns/builder) （更灵活但更加复杂）。
 - [抽象工厂模式](https://refactoringguru.cn/design-patterns/abstract-factory)通常基于一组[工厂方法](https://refactoringguru.cn/design-patterns/factory-method)， 但你也可以使用[原型模式](https://refactoringguru.cn/design-patterns/prototype)来生成这些类的方法。
 - 你可以同时使用[工厂方法](https://refactoringguru.cn/design-patterns/factory-method)和[迭代器模式](https://refactoringguru.cn/design-patterns/iterator)来让子类集合返回不同类型的迭代器， 并使得迭代器与集合相匹配。
-- [原型](https://refactoringguru.cn/design-patterns/prototype)并不基于继承， 因此没有继承的缺点。 另一方面， *原型*需要对被复制对象进行复杂的初始化。 [工厂方法](https://refactoringguru.cn/design-patterns/factory-method)基于继承， 但是它不需要初始化步骤。
 - [工厂方法](https://refactoringguru.cn/design-patterns/factory-method)是[模板方法模式](https://refactoringguru.cn/design-patterns/template-method)的一种特殊形式。 同时， *工厂方法*可以作为一个大型*模板方法*中的一个步骤。
 
+### 设计原则
 
+1. 依赖抽象，不要依赖具体
+
+   不能让高层组件依赖低层组件，而两者都要依赖于“抽象” 。  要遵循==依赖倒置==原则，工厂方法是最有威力的技巧之一  。
 
 ## [抽象工场模式](https://refactoringguru.cn/design-patterns/abstract-factory)
 
@@ -22,6 +25,12 @@
 - [抽象工厂模式](https://refactoringguru.cn/design-patterns/abstract-factory)通常基于一组[工厂方法](https://refactoringguru.cn/design-patterns/factory-method)， 但你也可以使用[原型模式](https://refactoringguru.cn/design-patterns/prototype)来生成这些类的方法。
 - 当只需对客户端代码隐藏子系统创建对象的方式时， 你可以使用[抽象工厂](https://refactoringguru.cn/design-patterns/abstract-factory)来代替[外观模式](https://refactoringguru.cn/design-patterns/facade)。
 - [抽象工厂](https://refactoringguru.cn/design-patterns/abstract-factory)、 [生成器](https://refactoringguru.cn/design-patterns/builder)和[原型](https://refactoringguru.cn/design-patterns/prototype)都可以用[单例模式](https://refactoringguru.cn/design-patterns/singleton)来实现。
+
+简单工厂 ： 用来生产同一等级结构中的任意产品。（对于增加新的产品，无能为力）
+
+工厂方法 ：用来生产同一等级结构中的固定产品。（支持增加任意产品）   
+
+抽象工厂 ：用来生产不同产品族的全部产品。（对于增加新的产品，无能为力；支持增加产品族）  
 
 ## [单例模式](https://refactoringguru.cn/design-patterns/singleton)
 
@@ -54,6 +63,11 @@
 
 - [装饰](https://refactoringguru.cn/design-patterns/decorator)可让你更改对象的外表， [策略模式](https://refactoringguru.cn/design-patterns/strategy)则让你能够改变其本质。
 
+### 设计原则
+
+1. 开闭原则：对扩展开放，对修改关闭
+2. 
+
 ## [适配器模式](https://refactoringguru.cn/design-patterns/adapter)
 
 ![适配器设计模式的结构（对象适配器）](https://refactoringguru.cn/images/patterns/diagrams/adapter/structure-object-adapter.png)
@@ -72,6 +86,10 @@
 - [外观模式](https://refactoringguru.cn/design-patterns/facade)为现有对象定义了一个新接口， [适配器模式](https://refactoringguru.cn/design-patterns/adapter)则会试图运用已有的接口。 *适配器*通常只封装一个对象， *外观*通常会作用于整个对象子系统上。
 - 当只需对客户端代码隐藏子系统创建对象的方式时， 你可以使用[抽象工厂模式](https://refactoringguru.cn/design-patterns/abstract-factory)来代替[外观](https://refactoringguru.cn/design-patterns/facade)。
 - [外观](https://refactoringguru.cn/design-patterns/facade)类通常可以转换为[单例模式](https://refactoringguru.cn/design-patterns/singleton)类， 因为在大部分情况下一个外观对象就足够了。
+
+### 设计原则
+
+最少知识原则：只和你的密友谈话
 
 ## [组合模式](https://refactoringguru.cn/design-patterns/composite)
 
@@ -103,26 +121,32 @@
 - [模板方法模式](https://refactoringguru.cn/design-patterns/template-method)基于继承机制： 它允许你通过扩展子类中的部分内容来改变部分算法。 [策略](https://refactoringguru.cn/design-patterns/strategy)基于组合机制： 你可以通过对相应行为提供不同的策略来改变对象的部分行为。 *模板方法*在类层次上运作， 因此它是静态的。 *策略*在对象层次上运作， 因此允许在运行时切换行为。
 - [状态](https://refactoringguru.cn/design-patterns/state)可被视为[策略](https://refactoringguru.cn/design-patterns/strategy)的扩展。 两者都基于组合机制： 它们都通过将部分工作委派给 “帮手” 对象来改变其在不同情景下的行为。 *策略*使得这些对象相互之间完全独立， 它们不知道其他对象的存在。 但*状态*模式没有限制具体状态之间的依赖， 且允许它们自行改变在不同情景下的状态。
 
+### 设计原则
+
+1. 把变化的地方独立出来
+
+   把会变化的部分取出来并“封装”起来，好让其他部分不会受到影响。结果: 代码变化引起的不经意后果变少，系统变得更有弹性
+
+2. 针对超类型编程，而不是针对实现编程
+
+3. 多组合，少继承
+
+   将算法族封装成类;使得在运行时动态的改变行为成为可能。
+
 ## [观察者模式](https://refactoringguru.cn/design-patterns/observer)
 
 ![观察者设计模式的结构](https://refactoringguru.cn/images/patterns/diagrams/observer/structure.png)
 
 - [责任链模式](https://refactoringguru.cn/design-patterns/chain-of-responsibility)、 [命令模式](https://refactoringguru.cn/design-patterns/command)、 [中介者模式](https://refactoringguru.cn/design-patterns/mediator)和[观察者模式](https://refactoringguru.cn/design-patterns/observer)用于处理请求发送者和接收者之间的不同连接方式：
-
   - *责任链*按照顺序将请求动态传递给一系列的潜在接收者， 直至其中一名接收者对请求进行处理。
   - *命令*在发送者和请求者之间建立单向连接。
   - *中介者*清除了发送者和请求者之间的直接连接， 强制它们通过一个中介对象进行间接沟通。
   - *观察者*允许接收者动态地订阅或取消接收请求。
 
-- [中介者](https://refactoringguru.cn/design-patterns/mediator)和[观察者](https://refactoringguru.cn/design-patterns/observer)之间的区别往往很难记住。 在大部分情况下， 你可以使用其中一种模式， 而有时可以同时使用。 让我们来看看如何做到这一点。
+### 设计原则
 
-  *中介者*的主要目标是消除一系列系统组件之间的相互依赖。 这些组件将依赖于同一个中介者对象。 *观察者*的目标是在对象之间建立动态的单向连接， 使得部分对象可作为其他对象的附属发挥作用。
-
-  有一种流行的中介者模式实现方式依赖于*观察者*。 中介者对象担当发布者的角色， 其他组件则作为订阅者， 可以订阅中介者的事件或取消订阅。 当*中介者*以这种方式实现时， 它可能看上去与*观察者*非常相似。
-
-  当你感到疑惑时， 记住可以采用其他方式来实现中介者。 例如， 你可永久性地将所有组件链接到同一个中介者对象。 这种实现方式和*观察者*并不相同， 但这仍是一种中介者模式。
-
-  假设有一个程序， 其所有的组件都变成了发布者， 它们之间可以相互建立动态连接。 这样程序中就没有中心化的中介者对象， 而只有一些分布式的观察者。
+1. 最小化对象间的依赖：让交互对象之间松耦合
+2. 
 
 ## [命令模式](https://refactoringguru.cn/design-patterns/command)
 
@@ -144,6 +168,12 @@
 - 你可以使用[迭代器模式](https://refactoringguru.cn/design-patterns/iterator)来遍历[组合模式](https://refactoringguru.cn/design-patterns/composite)树。
 - 你可以同时使用[工厂方法模式](https://refactoringguru.cn/design-patterns/factory-method)和[迭代器](https://refactoringguru.cn/design-patterns/iterator)来让子类集合返回不同类型的迭代器， 并使得迭代器与集合相匹配。
 
+### 设计原则
+
+单一职责：一个类应该只有一个引起变化的原因
+
+内聚力是一个术语，用来度量一个类或模块紧密的达到单一目的或责任。遵守这个原则的类具有很高的内聚力，而且比背负许多责任的低内聚类更容易维护。
+
 ## [状态模式](https://refactoringguru.cn/design-patterns/state)
 
 ![状态设计模式的结构](https://refactoringguru.cn/images/patterns/diagrams/state/structure-zh.png)
@@ -151,9 +181,21 @@
 - [桥接模式](https://refactoringguru.cn/design-patterns/bridge)、 [状态模式](https://refactoringguru.cn/design-patterns/state)和[策略模式](https://refactoringguru.cn/design-patterns/strategy) （在某种程度上包括[适配器模式](https://refactoringguru.cn/design-patterns/adapter)） 模式的接口非常相似。 实际上， 它们都基于[组合模式](https://refactoringguru.cn/design-patterns/composite)——即将工作委派给其他对象， 不过也各自解决了不同的问题。 模式并不只是以特定方式组织代码的配方， 你还可以使用它们来和其他开发者讨论模式所解决的问题。
 - [状态](https://refactoringguru.cn/design-patterns/state)可被视为[策略](https://refactoringguru.cn/design-patterns/strategy)的扩展。 两者都基于组合机制： 它们都通过将部分工作委派给 “帮手” 对象来改变其在不同情景下的行为。 *策略*使得这些对象相互之间完全独立， 它们不知道其他对象的存在。 但*状态*模式没有限制具体状态之间的依赖， 且允许它们自行改变在不同情景下的状态。
 
+### 设计模式
+
+
+
 ## [模板方法模式](https://refactoringguru.cn/design-patterns/template-method)
 
 ![模板方法设计模式的结构](https://refactoringguru.cn/images/patterns/diagrams/template-method/structure.png)
 
 - [工厂方法模式](https://refactoringguru.cn/design-patterns/factory-method)是[模板方法模式](https://refactoringguru.cn/design-patterns/template-method)的一种特殊形式。 同时， *工厂方法*可以作为一个大型*模板方法*中的一个步骤。
 - [模板方法](https://refactoringguru.cn/design-patterns/template-method)基于继承机制： 它允许你通过扩展子类中的部分内容来改变部分算法。 [策略模式](https://refactoringguru.cn/design-patterns/strategy)基于组合机制： 你可以通过对相应行为提供不同的策略来改变对象的部分行为。 *模板方法*在类层次上运作， 因此它是静态的。 *策略*在对象层次上运作， 因此允许在运行时切换行为。
+
+### 设计原则
+
+好莱坞原则：允许低层组件将自己挂钩到系统上,但是高层组件会决定什么时候和怎样使用这些低层组件。
+
+# 关系图
+
+[![O6FuIs.png](https://s1.ax1x.com/2022/05/14/O6FuIs.png)](https://imgtu.com/i/O6FuIs)
