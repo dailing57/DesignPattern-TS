@@ -66,7 +66,6 @@
 ### 设计原则
 
 1. 开闭原则：对扩展开放，对修改关闭
-2. 
 
 ## [适配器模式](https://refactoringguru.cn/design-patterns/adapter)
 
